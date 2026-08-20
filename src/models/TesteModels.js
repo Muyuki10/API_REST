@@ -1,11 +1,12 @@
 const users = [{id: 1,nome:"murilo"}]; 
-
+let id = 0
 
 function listarM(){
     return users
 }
-function criarM(id,nome){
-    users.push({id,nome})
+function criarM(nome){
+    id += 1
+    users.push({nome})
 }
 function atualizarM(id,nomeN){
     const onde = users.findIndex(i => i.id === id)
