@@ -16,8 +16,7 @@ connection.connect((erro) => {
     }
 })
 
-const users = [{id: 1,nome:"murilo"}]; 
-let id = 0
+
 
 function listarM(){
      const query = "SELECT * FROM users"
@@ -29,21 +28,17 @@ function listarM(){
             console.log(resultado)
         }
     })
-    return users
+    
 }
-function criarM(nome){
 
+async function criarM(nome){
+    try {
     const query = "INSERT INTO users(nome) VALUES (?);"
-    id += 1
-    users.push({nome})
-    connection.query(query,nome ,(erro,resultado)=>{
-        if (erro){
-            console.log(erro)
-        }
-        else {
-            console.log("criado com sucesso")
-        }
-    })
+    const [resultado] = await connection.query(query,[nome] )
+    }catch(erro){
+        console.log(erro)
+    }
+     
 }
 function atualizarM(id,nomeN){
     const onde = users.findIndex(i => i.id === id)
